@@ -20,15 +20,17 @@ public class MainManager : MonoBehaviour
     
     private bool m_Started = false;
     private int m_Points;
-    //public string HS;
+    public string HS;
     
     private bool m_GameOver = false;
+    private bool highScoreUp = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         ScenePersistenceManager = GameObject.Find("Scene Persistence Manager").GetComponent<ScenePersistenceManager>();
+        HS = nameBox.GetComponent<TMP_InputField>().text;
 
         highScoreText.text = "Highscore : " + ScenePersistenceManager.highScore;
         namePlayerHSText.text = "Name :  " + ScenePersistenceManager.nameHS;
@@ -51,7 +53,7 @@ public class MainManager : MonoBehaviour
 
     private void Update()
     {
-        if (!m_Started)
+        if (!m_Started && !highScoreUp)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -64,11 +66,11 @@ public class MainManager : MonoBehaviour
                 Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange);
             }
         }
-        else if (m_GameOver)
+        else if (m_GameOver && !highScoreUp)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                RestartScene();
             }
         }
     }
@@ -92,11 +94,18 @@ public class MainManager : MonoBehaviour
         {
             ScenePersistenceManager.highScore = m_Points;
             nameBox.gameObject.SetActive(true);
+            highScoreUp = true;
         }
     }
 
     public void SetHSName()
     {
         ScenePersistenceManager.nameHS = HS;
+        RestartScene();
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
