@@ -30,6 +30,7 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         ScenePersistenceManager = GameObject.Find("Scene Persistence Manager").GetComponent<ScenePersistenceManager>();
+        ScenePersistenceManager.LoadScore();
 
         highScoreText.text = "Highscore : " + ScenePersistenceManager.highScore;
         namePlayerHSText.text = "Name :  " + ScenePersistenceManager.nameHS;
@@ -100,6 +101,7 @@ public class MainManager : MonoBehaviour
     public void SetHSName()
     {
         ScenePersistenceManager.nameHS = nameBox.GetComponent<TMP_InputField>().text;
+        ScenePersistenceManager.SaveScore();
         RestartScene();
     }
 
