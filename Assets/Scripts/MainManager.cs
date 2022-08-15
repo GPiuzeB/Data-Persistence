@@ -23,14 +23,13 @@ public class MainManager : MonoBehaviour
     public string HS;
     
     private bool m_GameOver = false;
-    private bool highScoreUp = false;
+    public bool highScoreUp = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         ScenePersistenceManager = GameObject.Find("Scene Persistence Manager").GetComponent<ScenePersistenceManager>();
-        HS = nameBox.GetComponent<TMP_InputField>().text;
 
         highScoreText.text = "Highscore : " + ScenePersistenceManager.highScore;
         namePlayerHSText.text = "Name :  " + ScenePersistenceManager.nameHS;
@@ -100,7 +99,7 @@ public class MainManager : MonoBehaviour
 
     public void SetHSName()
     {
-        ScenePersistenceManager.nameHS = HS;
+        ScenePersistenceManager.nameHS = nameBox.GetComponent<TMP_InputField>().text;
         RestartScene();
     }
 
