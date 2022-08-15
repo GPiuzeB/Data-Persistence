@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
@@ -13,13 +14,13 @@ public class MainManager : MonoBehaviour
     public Text ScoreText;
     public Text highScoreText;
     public Text namePlayerHSText;
-    public GameObject nameBox;
+    public TMP_InputField nameBox;
     public GameObject GameOverText;
     public ScenePersistenceManager ScenePersistenceManager;
     
     private bool m_Started = false;
     private int m_Points;
-    public string HS;
+    //public string HS;
     
     private bool m_GameOver = false;
 
@@ -28,7 +29,6 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         ScenePersistenceManager = GameObject.Find("Scene Persistence Manager").GetComponent<ScenePersistenceManager>();
-        //HS = nameBox.text;
 
         highScoreText.text = "Highscore : " + ScenePersistenceManager.highScore;
         namePlayerHSText.text = "Name :  " + ScenePersistenceManager.nameHS;
