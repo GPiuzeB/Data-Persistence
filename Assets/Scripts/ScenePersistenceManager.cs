@@ -29,13 +29,6 @@ public class ScenePersistenceManager : MonoBehaviour
         public string nameHS;
     }
 
-
-    public void saveName(string s)
-    {
-        nameHS = s;
-        Debug.Log(nameHS);
-    }
-
     public void SaveScore()
     {
         SaveData data = new SaveData();
